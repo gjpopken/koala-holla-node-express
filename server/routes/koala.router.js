@@ -10,7 +10,7 @@ const pool = require('../modules/pool')
 koalaRouter.get('/', (req, res) => {
     console.log('GET route working')
     let queryText = `
-    SELECT * FROM "koalas"
+    SELECT * FROM "koalas;"
     `
     pool.query(queryText).then((result) => {
         res.send(result.rows)
@@ -25,15 +25,23 @@ koalaRouter.get('/', (req, res) => {
 // POST
 koalaRouter.post('/', (req, res) => {
     console.log("POST route working")
-let koalas = req.body
+let koala = req.body
+
 let queryText = `
 INSERT INTO "koalas"
 	("name", "gender", "age", "ready_to_transfer", "comments")
-	VALUES
-	('Stevie', 'M', 23, true, 'Born in Minnesota')
+	VALUES ($1, $2, $3, $4, $5);
     `
-pool.query(queryText).then((result) => {
+const queryParams = [koala.name, koala.gender, koala.age, koala.ready_to_transfer, koala.comments]
+pool.query(queryText, queryParams).then((result) => {
     res.sendStatus(201)
+// let queryText = `INSERT INTO "koalas"
+// ("name", "gender", "age", "ready_to_transfer", "comments")
+// VALUES
+// ('Stevi', 'M', 46, true, 'old and grumpy');
+//     `
+// pool.query(queryText).then((result) => {
+//     res.sendStatus(201)
 })
 })
 
