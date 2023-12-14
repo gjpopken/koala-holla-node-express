@@ -3,16 +3,13 @@ const koalaRouter = express.Router();
 
 // DB CONNECTION
 
+const pool = require('../modules/pool')
+
 
 // GET
-koalaRouter.get('/koalas', (req,res) => {
+koalaRouter.get('/', (req,res) => {
     console.log('GET route working')
-  res.sendStatus(200)
-    
-    .catch((error) => {
-        console.log('WE HIT THE KOALA WITH OUR SUBARU OUTBACK', error)
-        res.sendStatus(500)
-    })
+
 })
 // POST
 
