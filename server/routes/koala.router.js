@@ -12,7 +12,9 @@ koalaRouter.get('/', (req,res) => {
 
 })
 // POST
-
+koalaRouter.post('/', (req,res) =>{
+    console.log("post route working")
+})
 
 // PUT
 
