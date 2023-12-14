@@ -25,6 +25,16 @@ koalaRouter.get('/', (req, res) => {
 // POST
 koalaRouter.post('/', (req, res) => {
     console.log("POST route working")
+let koalas = req.body
+let queryText = `
+INSERT INTO "koalas"
+	("name", "gender", "age", "ready_to_transfer", "comments")
+	VALUES
+	('Stevie', 'M', 23, true, 'Born in Minnesota')
+    `
+pool.query(queryText).then((result) => {
+    res.sendStatus(201)
+})
 })
 
 // PUT
