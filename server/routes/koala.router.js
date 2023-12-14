@@ -26,7 +26,7 @@ koalaRouter.get('/', (req, res) => {
 koalaRouter.post('/', (req, res) => {
     console.log("POST route working")
 let koala = req.body
-
+console.log('this is koala', koala);
 let queryText = `
 INSERT INTO "koalas"
 	("name", "gender", "age", "ready_to_transfer", "comments")
