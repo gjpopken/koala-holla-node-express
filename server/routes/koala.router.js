@@ -13,11 +13,13 @@ koalaRouter.get('/', (req,res) => {
 })
 // POST
 koalaRouter.post('/', (req,res) =>{
-    console.log("post route working")
+    console.log("POST route working")
 })
 
 // PUT
-
+koalaRouter.put('/', (req,res) =>{
+    console.log("PUT route working")
+})
 
 // DELETE
 
