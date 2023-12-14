@@ -50,32 +50,12 @@ function getKoalas(){
         </tr>
       `
     }
-    console.log(newInnerHTML);
-
+    //console.log(newInnerHTML);
+    tbody.innerHTML += newInnerHTML
+  }
 
     
-  //   tbody.innerHTML += `
-  //   <tr>
-  //     <td>${koala.name}</td>
-  //     <td>${koala.age}</td>
-  //     <td>${koala.gender}</td>
-  //     <td>${koala.comments}</td>
-  //     <td>${koala.readyToTransfer}</td>
-  //   `
-  //   if (koala.readyToTransfer === false) {
-  //     console.log('current innerHTML of tbody', tbody.innerHTML);
-  //     tbody.innerHTML += `
-  //     <td>
-  //       <button>Mark as Ready</button>
-  //     </td></tr>
-  //     `
-  //   } else {
-  //     tbody.innerHTML += `
-  //       </tr>
-  //     `
-  //   }
-  // }
-
+// ! Comment back in once the servers are up
   // axios({
   //   method: 'GET',
   //   url: '/koalas'
@@ -83,8 +63,8 @@ function getKoalas(){
   //   let koalas = response.data
   //   const tbody = document.getElementById('viewKoalas')
   //   tbody.innerHTML = ''
-  //   for (koala of hardCodedKoalas) { // TODO change to the response data
-  //     tbody.innerHTML += `
+  //   for (koala of koalas) {
+  //     let newInnerHTML = `
   //     <tr>
   //       <td>${koala.name}</td>
   //       <td>${koala.age}</td>
@@ -93,16 +73,19 @@ function getKoalas(){
   //       <td>${koala.readyToTransfer}</td>
   //     `
   //     if (koala.readyToTransfer === false) {
-  //       tbody.innerHTML += `
-  //       <td>
-  //         <button>Mark as Ready</button>
-  //       </td></tr>
-  //       `
+  //       newInnerHTML += `
+  //           <td>
+  //             <button>Mark as Ready</button>
+  //           </td></tr>
+  //           `
   //     } else {
-  //       tbody.innerHTML += `
+  
+  //       newInnerHTML += `
   //         </tr>
   //       `
   //     }
+  //     console.log(newInnerHTML);
+  //     tbody.innerHTML += newInnerHTML
   //   }
   // }) // end of .then
   
@@ -111,7 +94,14 @@ function getKoalas(){
 function saveKoala(){
   console.log( 'in saveKoala' );
   // axios call to server to get koalas
- 
+  axios({
+    method: "POST",
+    url: "/koalas",
+    data: {
+      
+    }
+  })
+  getKoalas()
 }
 
-getKoalas();
+getKoalas()
