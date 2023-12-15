@@ -21,13 +21,14 @@ function getKoalas(){
     for (let koala of koalas) {
       console.log(koala);
       // this variable is the HTML that will I will add to the innerHTML of the tbody, the container
+      // the variable includes a ternary operator so that it displays either yes or no instead of true and false
       let newInnerHTML = `
       <tr>
         <td>${koala.name}</td>
         <td>${koala.age}</td>
         <td>${koala.gender}</td>
         <td>${koala.comments}</td>
-        <td>${koala.ready_to_transfer}</td>
+        <td>${koala.ready_to_transfer ? 'Yes' : 'No'}</td>
       `
       if (koala.ready_to_transfer === false) { // the conditional to see if ready_to_transfer is true or not
         newInnerHTML += `
