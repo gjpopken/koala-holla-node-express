@@ -6,8 +6,7 @@ CREATE TABLE "koalas"(
 	"ready_to_transfer" BOOLEAN DEFAULT FALSE,
 	"comments" VARCHAR(500)
 	);
-
-
+	
 INSERT INTO "koalas"
 	("name", "gender", "age", "ready_to_transfer", "comments")
 	VALUES
