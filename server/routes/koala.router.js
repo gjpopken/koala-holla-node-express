@@ -56,19 +56,56 @@ INSERT INTO "koalas"
 })
 
 // PUT
-koalaRouter.put('/', (req, res) => {
+
+// ! This is a section that Im pretty sure we need(so im gonna make it ), but Gavin
+// ! said we could get it done without it 
+koalaRouter.get('/byid/:id', (req,res) => {
+const idToGet = req.params.id 
+const queryText = `
+    SELECT FROM "koalas"
+    WHERE "id" = 1
+    `
+pool.query(queryText).then((result) => {
+    res.sendStatus(200)
+    console.log("this is the id we're trying to get", idToGet)
+})
+})
+// end of byid GET router
+
+
+koalaRouter.put('/:id', (req, res) => {
     console.log("PUT route working")
 
 // ! this sectioin is able to update data on the database with a predetermined value and id
-    queryText = `
-    UPDATE "koalas"
-    SET "ready_to_transfer" = TRUE
-    WHERE "id" = 3;
-    `
-    pool.query(queryText).then((result) => {
-        res.send(result);
-    })
+    // queryText = `
+    // UPDATE "koalas"
+    // SET "ready_to_transfer" = TRUE
+    // WHERE "id" = 3;
+    // `
+    // pool.query(queryText).then((result) => {
+    //     res.send(result);
+    // })
 //end of section that can update database with a predetermined value and id
+
+// ! this section is to target by id the koalas to switch ready for transfer to true
+let id = req.params.id
+
+
+queryText = `
+UPDATE "koalas"
+SET "ready_to_transfer" = TRUE
+WHERE "id" = $1;
+`
+let queryParams =[id]
+pool.query(queryText, queryParams).then((result) => {
+    res.send(result);
+    console.log('targetting by id successful')
+})
+
+// this is the end of the section to target by id the koalas to switch ready to transfer to true
+.catch((error) => {
+    console.log('you did something wrong dingus', error);
+})
 })
 
 // DELETE
