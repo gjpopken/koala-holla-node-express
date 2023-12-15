@@ -59,31 +59,31 @@ INSERT INTO "koalas"
 
 // ! This is a section that Im pretty sure we need(so im gonna make it ), but Gavin
 // ! said we could get it done without it 
-koalaRouter.get('/byid/:id', (req,res) => {
-const idToGet = req.params.id 
-const queryText = `
-    SELECT * FROM "koalas"
-    WHERE "id" = $1;
-    `
-const queryParams = [idToGet]
-console.log('req.params', req.params);
+// koalaRouter.get('/byid/:id', (req,res) => {
+// const idToGet = req.params.id 
+// const queryText = `
+//     SELECT * FROM "koalas"
+//     WHERE "id" = $1;
+//     `
+// const queryParams = [idToGet]
+// console.log('req.params', req.params);
 
-pool.query(queryText, queryParams).then((result) => {
-    res.sendStatus(200)
-    console.log("/koalas/byid/id result:", result.rows)
-})
-.catch((error) => {
-    console.log('some error in the byid get route', queryText);
-    res.sendStatus(error)
-})
-})
+// pool.query(queryText, queryParams).then((result) => {
+//     res.sendStatus(200)
+//     console.log("/koalas/byid/id result:", result.rows)
+// })
+// .catch((error) => {
+//     console.log('some error in the byid get route', queryText);
+//     res.sendStatus(error)
+// })
+// })
 // end of byid GET router
 
 
 koalaRouter.put('/:id', (req, res) => {
     console.log("PUT route working")
 
-// ! this sectioin is able to update data on the database with a predetermined value and id
+// ! this section is able to update data on the database with a predetermined value and id
     // queryText = `
     // UPDATE "koalas"
     // SET "ready_to_transfer" = TRUE
