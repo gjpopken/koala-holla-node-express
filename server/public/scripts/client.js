@@ -40,20 +40,39 @@ function getKoalas(){
       tbody.innerHTML += newInnerHTML
     }
   }) // end of .then
+  .catch((error) => {
+    console.log(error);
+  })
   
 } // end getKoalas
 
 function saveKoala(){
   console.log( 'in saveKoala' );
   // axios call to server to get koalas
+  // ! Getting the values of the inputs from the DOM and storing as variables to use in the data we send to the server
+  let nameInput = document.getElementById('nameIn').value
+  let ageInput = document.getElementById('ageIn').value
+  let genderInput = document.getElementById('genderIn').value
+  let commentsInput = document.getElementById('notesIn').value
+  let ready_to_transfer_Input = document.getElementById('addButton').value
+
   axios({
     method: "POST",
     url: "/koalas",
     data: {
-      
+      name: nameInput,
+      age: ageInput,
+      gender: genderInput,
+      ready_to_transfer: Boolean(ready_to_transfer_Input),
+      comments: commentsInput
     }
+  }).then((response)=>{
+    console.log('successfully posted to the server');
+    getKoalas()
+  }).catch((error)=>{
+    console.log(error);
   })
-  getKoalas()
+ 
 }
 
 getKoalas()
