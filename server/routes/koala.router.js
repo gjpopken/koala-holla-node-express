@@ -65,9 +65,15 @@ const queryText = `
     SELECT FROM "koalas"
     WHERE "id" = 1
     `
-pool.query(queryText).then((result) => {
+const queryParams = [idToGet]
+
+pool.query(queryText, queryParams).then((result) => {
     res.sendStatus(200)
-    console.log("this is the id we're trying to get", idToGet)
+    console.log("/koalas/byid/id result:", result.rows)
+})
+.catch((error) => {
+    console.log('some error in the byid get route');
+    res.sendStatus(error)
 })
 })
 // end of byid GET router
