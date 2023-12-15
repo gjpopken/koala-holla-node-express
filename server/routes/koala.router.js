@@ -14,8 +14,8 @@ koalaRouter.get('/', (req, res) => { // the endpoint for our GET request, and si
     `
     pool.query(queryText) // the query function takes our queryText and uses it with the database
         .then((result) => {
-        res.send(result.rows) // we have to send a result, and here we are sending back the array of koalas
-    })
+            res.send(result.rows) // we have to send a result, and here we are sending back the array of koalas
+        })
         .catch((error) => {
             console.log("error getting koalas", error);
             res.sendStatus(500) // sending back INTERNAL SERVER ERROR if it throws an error
@@ -84,7 +84,7 @@ INSERT INTO "koalas"
 koalaRouter.put('/:id', (req, res) => {
     console.log("PUT route working")
 
-// ! this section is able to update data on the database with a predetermined value and id
+    // ! this section is able to update data on the database with a predetermined value and id
     // queryText = `
     // UPDATE "koalas"
     // SET "ready_to_transfer" = TRUE
@@ -93,28 +93,28 @@ koalaRouter.put('/:id', (req, res) => {
     // pool.query(queryText).then((result) => {
     //     res.send(result);
     // })
-//end of section that can update database with a predetermined value and id
+    //end of section that can update database with a predetermined value and id
 
-// ! this section is to target by id the koalas to switch ready for transfer to true
-let id = req.params.id // req.params.id is the number that we sent over from the client, so the route is /koalas/4, for example
+    // ! this section is to target by id the koalas to switch ready for transfer to true
+    let id = req.params.id // req.params.id is the number that we sent over from the client, so the route is /koalas/4, for example
 
 
-queryText = `
+    queryText = `
 UPDATE "koalas"
 SET "ready_to_transfer" = TRUE
 WHERE "id" = $1;
 `
-let queryParams =[id]
-pool.query(queryText, queryParams).then((result) => {
-    console.log('targetting by id successful')
-    res.sendStatus(200);
-})
+    let queryParams = [id]
+    pool.query(queryText, queryParams).then((result) => {
+        console.log('targetting by id successful')
+        res.sendStatus(200);
+    })
 
-// this is the end of the section to target by id the koalas to switch ready to transfer to true
-.catch((error) => {
-    console.log('you did something wrong dingus', error);
-    res.sendStatus(500)
-})
+        // this is the end of the section to target by id the koalas to switch ready to transfer to true
+        .catch((error) => {
+            console.log('you did something wrong dingus', error);
+            res.sendStatus(500)
+        })
 })
 
 // DELETE
