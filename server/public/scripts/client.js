@@ -27,7 +27,7 @@ function getKoalas(){
       if (koala.ready_to_transfer === false) {
         newInnerHTML += `
             <td>
-              <button>Mark as Ready</button>
+              <button onclick="markReadyToTransfer(${koala.id})">Mark as Ready</button>
             </td></tr>
             `
       } else {
@@ -75,4 +75,18 @@ function saveKoala(){
  
 }
 
+// ! a function run when Mark as Ready button is clicked on client side/DOM
+function markReadyToTransfer (id) {
+  axios({
+    method: "PUT",
+    url: `/koalas/${id}`
+  }).then((response)=>{
+    console.log('successfully PUT to server');
+    getKoalas()
+  }).catch((error) => {
+    console.log(error);
+  })
+}
+
 getKoalas()
+// Amazing
