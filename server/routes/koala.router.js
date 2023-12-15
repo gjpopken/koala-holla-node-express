@@ -10,7 +10,7 @@ const pool = require('../modules/pool')
 koalaRouter.get('/', (req, res) => {
     console.log('GET route working')
     let queryText = `
-    SELECT * FROM "koalas";
+    SELECT * FROM "koalas" ORDER BY "id";
     `
     pool.query(queryText).then((result) => {
         res.send(result.rows)
@@ -105,13 +105,14 @@ WHERE "id" = $1;
 `
 let queryParams =[id]
 pool.query(queryText, queryParams).then((result) => {
-    res.send(result);
     console.log('targetting by id successful')
+    res.sendStatus(200);
 })
 
 // this is the end of the section to target by id the koalas to switch ready to transfer to true
 .catch((error) => {
     console.log('you did something wrong dingus', error);
+    res.sendStatus(500)
 })
 })
 
