@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Koalla Holla</title>
-    <link rel="stylesheet" href="views/styles.css">
+    <!-- <link rel="stylesheet" href="views/styles.css"> -->
     <script defer src="scripts/client.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
     <header>
@@ -20,7 +21,7 @@
       <input type="text" id="genderIn" value="" placeholder="Gender">
       <input type="text" id="readyForTransferIn" value="" placeholder="Transfer">
       <input type="text" id="notesIn" value="" placeholder="Notes">
-      <button type="button" id="addButton">Add Koala</button>
+      <button type="button" id="addButton" onclick="saveKoala()">Add Koala</button>
     </section>
     <section>
       <h2>All Koalas</h2>
@@ -30,8 +31,9 @@
             <th>Name</th>
             <th>Age</th>
             <th>Gender</th>
-            <th>Ready for Transfer</th>
             <th>Notes</th>
+            <th>Ready for Transfer</th>
+            <th>Mark as Ready</th>
           </tr>
         </thead>
         <tbody id="viewKoalas">
