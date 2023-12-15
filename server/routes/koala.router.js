@@ -16,7 +16,7 @@ koalaRouter.get('/', (req, res) => {
         res.send(result.rows)
     })
         .catch((error) => {
-            console.log("error getting books", error);
+            console.log("error getting koalas", error);
             res.sendStatus(500)
 
         })
