@@ -39,7 +39,7 @@ INSERT INTO "koalas"
         res.sendStatus(201)
     })
         .catch((error) => {
-            console.log('oops we hit an error in the POST query')
+            console.log('oops we hit an error in the POST query', error)
             res.sendStatus(404)
         })
     // end of section dealing with SQL Injection
