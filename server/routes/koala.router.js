@@ -28,7 +28,7 @@ koalaRouter.get('/', (req, res) => { //* the endpoint for our GET request, and s
 })
 
 // POST
-koalaRouter.post('/', (req, res) => { // our POST endpoint
+koalaRouter.post('/', (req, res) => { //* our POST endpoint
     console.log("POST route working")
 
     // ! this section deals with SQL injection by establishinng queryParams instead of pure SQL being sent to the database
