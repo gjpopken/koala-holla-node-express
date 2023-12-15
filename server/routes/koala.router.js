@@ -62,17 +62,18 @@ INSERT INTO "koalas"
 koalaRouter.get('/byid/:id', (req,res) => {
 const idToGet = req.params.id 
 const queryText = `
-    SELECT FROM "koalas"
-    WHERE "id" = 1
+    SELECT * FROM "koalas"
+    WHERE "id" = $1;
     `
 const queryParams = [idToGet]
+console.log('req.params', req.params);
 
 pool.query(queryText, queryParams).then((result) => {
     res.sendStatus(200)
     console.log("/koalas/byid/id result:", result.rows)
 })
 .catch((error) => {
-    console.log('some error in the byid get route');
+    console.log('some error in the byid get route', queryText);
     res.sendStatus(error)
 })
 })
